@@ -1,0 +1,9 @@
+@page{
+    size:A4;
+    margin: 1;
+}
+
+#btn-print{
+    display: none;
+    visibility:none;
+}

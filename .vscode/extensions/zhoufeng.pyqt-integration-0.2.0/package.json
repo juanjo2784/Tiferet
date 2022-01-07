@@ -1,0 +1,236 @@
+{
+	"name": "pyqt-integration",
+	"displayName": "PYQT Integration",
+	"description": "PYQT integration",
+	"license": "MIT",
+	"version": "0.2.0",
+	"publisher": "zhoufeng",
+	"engines": {
+		"vscode": "^1.22.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mine2chow/PYQT-Integration.git"
+	},
+	"icon": "imgs/pyqt-integration-icon.png",
+	"homepage": "https://github.com/mine2chow/PYQT-Integration/blob/master/README.md",
+	"keywords": [
+		"pyqt",
+		"qt"
+	],
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "pyqt-integration.createNewForm",
+				"title": "PYQT: New Form"
+			},
+			{
+				"command": "pyqt-integration.editInDesigner",
+				"title": "PYQT: Edit In Designer"
+			},
+			{
+				"command": "pyqt-integration.Preview",
+				"title": "PYQT: Preview"
+			},
+			{
+				"command": "pyqt-integration.compileForm",
+				"title": "PYQT: Compile Form"
+			},
+			{
+				"command": "pyqt-integration.compileQRC",
+				"title": "PYQT: Compile Resource"
+			},
+			{
+				"command": "pyqt-integration.pylupdate",
+				"title": "PYQT: Generate Translation File (.ts)"
+			},
+			{
+				"command": "pyqt-integration.linguist",
+				"title": "PYQT: Open With Qt Linguist"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "pyqt-integration.createNewForm",
+					"when": "filesExplorerFocus == true",
+					"group": "pyqt-integration@1"
+				},
+				{
+					"command": "pyqt-integration.Preview",
+					"when": "resourceScheme == file && resourceExtname == .ui",
+					"group": "pyqt-integration@2"
+				},
+				{
+					"command": "pyqt-integration.editInDesigner",
+					"when": "resourceScheme == file && resourceExtname == .ui",
+					"group": "pyqt-integration@3"
+				},
+				{
+					"command": "pyqt-integration.compileForm",
+					"when": "resourceScheme == file && resourceExtname == .ui",
+					"group": "pyqt-integration@4"
+				},
+				{
+					"command": "pyqt-integration.compileQRC",
+					"when": "resourceScheme == file && resourceExtname == .qrc",
+					"group": "pyqt-integration@5"
+				},
+				{
+					"command": "pyqt-integration.pylupdate",
+					"when": "resourceScheme == file && resourceExtname == .py",
+					"group": "pyqt-integration@6"
+				},
+				{
+					"command": "pyqt-integration.pylupdate",
+					"when": "resourceScheme == file && resourceExtname == .pro",
+					"group": "pyqt-integration@6"
+				},
+				{
+					"command": "pyqt-integration.linguist",
+					"when": "resourceScheme == file && resourceExtname == .ts",
+					"group": "pyqt-integration@7"
+				}
+			],
+			"commandPalette": [
+				{
+					"command": "pyqt-integration.editInDesigner",
+					"when": "false"
+				},
+				{
+					"command": "pyqt-integration.Preview",
+					"when": "false"
+				},
+				{
+					"command": "pyqt-integration.compileForm",
+					"when": "false"
+				},
+				{
+					"command": "pyqt-integration.compileQRC",
+					"when": "false"
+				},
+				{
+					"command": "pyqt-integration.pylupdate",
+					"when": "false"
+				},
+				{
+					"command": "pyqt-integration.linguist",
+					"when": "false"
+				}
+			]
+		},
+		"configuration": {
+			"title": "PYQT integration configuration",
+			"properties": {
+				"pyqt-integration.qtdesigner.path": {
+					"type": "string",
+					"default": "",
+					"description": "Path of QT designer",
+					"scope": "window"
+				},
+				"pyqt-integration.pyuic.cmd": {
+					"type": "string",
+					"default": "pyuic5",
+					"description": "'pyuic' command file, you can also specify a path",
+					"scope": "window"
+				},
+				"pyqt-integration.pyrcc.cmd": {
+					"type": "string",
+					"default": "pyrcc5",
+					"description": "'pyrcc' command file, you can also specify a path",
+					"scope": "window"
+				},
+				"pyqt-integration.pylupdate.cmd": {
+					"type": "string",
+					"default": "pylupdate5",
+					"description": "'pylupdate' command file, you can also specify a path",
+					"scope": "window"
+				},
+				"pyqt-integration.linguist.cmd": {
+					"type": "string",
+					"default": "linguist",
+					"description": "'linguist' command file, you can also specify a path",
+					"scope": "window"
+				},
+				"pyqt-integration.pyuic.compile.filepath": {
+					"type": "string",
+					"default": "Ui_${ui_name}.py",
+					"description": "Target '.py' file path for compiling, relative path as default, switch to absolute path by involving ${workspace}, e.g. ${workspace}\\\\UI\\\\Ui_${ui_name}.py",
+					"scope": "window"
+				},
+				"pyqt-integration.pyuic.compile.addOptions": {
+					"type": "string",
+					"default": "",
+					"description": "Additional options for pyuic compiling, it can be a combination of '-x', '-d', '-i', etc.",
+					"scope": "window"
+				},
+				"pyqt-integration.pyrcc.compile.filepath": {
+					"type": "string",
+					"default": "${qrc_name}_rc.py",
+					"description": "Target '.py' file path for compiling, relative path as default, switch to absolute path by involving ${workspace}, e.g. ${workspace}\\\\QRC\\\\${qrc_name}_rc.py",
+					"scope": "window"
+				},
+				"pyqt-integration.pyrcc.compile.addOptions": {
+					"type": "string",
+					"default": "",
+					"description": "Additional options for pyrcc compiling, it can be a combination of '-root', '-threshold', '-compress', '-no-compress', etc.",
+					"scope": "window"
+				},
+				"pyqt-integration.pylupdate.compile.filepath": {
+					"type": "string",
+					"default": "${ts_name}.ts",
+					"description": "Only works when compiling an UI file (.py), Stands for the target '.ts' file's path, relative path as default, switch to absolute path by involving ${workspace}, e.g. ${workspace}\\\\TS\\\\${ts_name}.ts",
+					"scope": "window"
+				},
+				"pyqt-integration.pylupdate.compile.addOptions": {
+					"type": "string",
+					"default": "",
+					"description": "Additional options for pylupdate, it can be a combination of '-verbose', '-noobsolete', '-tr-function', '-translate-function', etc.",
+					"scope": "window"
+				}
+			}
+		},
+		"languages": [
+			{
+				"id": "css",
+				"extensions": [
+					".qss"
+				]
+			},
+			{
+				"id": "xml",
+				"extensions": [
+					".ui",
+					".qrc"
+				]
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^2.6.1",
+		"vscode": "^1.1.6",
+		"tslint": "^5.8.0",
+		"@types/node": "^7.0.43",
+		"@types/mocha": "^2.2.42"
+	},
+	"__metadata": {
+		"id": "8c223abc-595d-41de-aef9-152aae8d8f8e",
+		"publisherId": "e648bf47-1b26-4ce4-951e-a80aba6f7798",
+		"publisherDisplayName": "Feng Zhou",
+		"installedTimestamp": 1626615450979
+	}
+}
