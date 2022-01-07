@@ -20,26 +20,30 @@ include_once("config/config.php");
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171607499-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-171607499-1');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171607499-1"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-171607499-1');
+  </script>
  
   <link href= "<?php echo $ruta ?>css/style.css" rel="stylesheet">
   <link href="<?php echo $ruta ?>css/menu.css" rel="stylesheet">
-    <?php 
-      $evento = (isset($_GET['a']))?explode("/", $_GET['a']):"Home";
-      if ($evento[0] != "eventos"){
-        echo "<script src='".$ruta."js/loader.js'></script>";
-      }else{
-        include_once("pages/event/fEvento.php");
-      }
-    ?>
+
+  <?php 
+    $evento = (isset($_GET['a']))?explode("/", $_GET['a']):"Home";
+    if ($evento[0] != "eventos"){
+      echo "<script src='".$ruta."js/loader.js'></script>";
+    }else{
+      include_once("pages/event/fEvento.php");
+    }
+  ?>
+
 </head>
+
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex align-items-start justify-content-between">
@@ -54,20 +58,22 @@ include_once("config/config.php");
 
     </nav>
   </header>
-<main>
+  <main>
 
-<div class="loader" style="display:block;" id="loader" ></div>
-<div  class="pal animate-bottom" style="display:none;" id="myDiv">
+    <div class="loader" style="display:block;" id="loader" ></div>
 
-  <?php 
-    include_once ("config/mapa.php"); 
+    <div  class="pal animate-bottom" style="display:none;" id="myDiv">
 
-    require $contenido;
+    <?php 
+      include_once ("config/mapa.php"); 
 
-    echo "</div></main>";
-    include_once ("component/footer.php"); 
-    include_once ('component/menu.php');
-  ?>
+      require $contenido;
+
+      echo "</div></main>";
+      include_once ("component/footer.php"); 
+      include_once ('component/menu.php');
+    ?>
 
 </body>
+
 </html>
